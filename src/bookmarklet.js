@@ -127,6 +127,18 @@ audio.addEventListener(
 startSong();
 requestAnimationFrame(updateProgressBar);
 
+
+
+navigator.mediaSession.setActionHandler('previoustrack', function() {
+  currentSong--;
+  startSong();
+});
+
+navigator.mediaSession.setActionHandler('nexttrack', function() {
+  currentSong++;
+  startSong();
+});
+
 /*
 startSong begins playing a new song
 It runs once at the start and anytime a song is changed
@@ -136,6 +148,9 @@ function startSong() {
   audio.play();
   var t = decodeURIComponent(songs[currentSong].href);
   songname.innerHTML = t.substring(t.lastIndexOf("/") + 1);
+  navigator.mediaSession.metadata = new MediaMetadata({
+      title: songname.innerHTML
+    });
 }
 
 /*
