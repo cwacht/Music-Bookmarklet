@@ -14,136 +14,136 @@ for (linkIndex in listOfLinks) {
     songs.push(listOfLinks[linkIndex]);
   }
 }
+
+//If no audio is detected, inform the user and prompt for a query.
 if(songs.length == 0){
   var search = prompt("No songs detected on the current page. What type of music would you like to hear?", "okgo");
   if(search){
-    window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|mp4|midi) "+search);
+    window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|mp4|midi) "+search); //https://www.wikihow.com/Get-Free-Music-Using-Google
   }
 }else{
 
-//Create the player container
-var player = creationHelper("div", "player", "", "", "");
+  //Create the player container
+  var player = creationHelper("div", "player", "", "", "");
 
 
-var playing = creationHelper("div", "playing", "", "", "");
+  var playing = creationHelper("div", "playing", "", "", "");
 
-//Add progressbar
-var progressBar = creationHelper("div", "progressbar", "", "", function(e) {
-  var x = e.clientX;
-  x /= window.innerWidth;
-  audio.currentTime = audio.duration * x;
-});
-//Progress
-var progress = creationHelper("div", "progress", "", "", "");
+  //Add progressbar
+  var progressBar = creationHelper("div", "progressbar", "", "", function(e) {
+    var x = e.clientX;
+    x /= window.innerWidth;
+    audio.currentTime = audio.duration * x;
+  });
+  //Progress
+  var progress = creationHelper("div", "progress", "", "", "");
 
-progressBar.appendChild(progress);
-playing.appendChild(progressBar);
+  progressBar.appendChild(progress);
+  playing.appendChild(progressBar);
 
-//Add songname
-var songname = creationHelper("div", "songname", "", "", "");
-playing.appendChild(songname);
+  //Add songname
+  var songname = creationHelper("div", "songname", "", "", "");
+  playing.appendChild(songname);
 
-//Add button container
-var buttons = creationHelper("div", "buttons", "", "", "");
+  //Add button container
+  var buttons = creationHelper("div", "buttons", "", "", "");
 
-//Prev button
-buttons.appendChild(
-  creationHelper("button", "", "|<", "", function() {
-    currentSong--;
-    startSong();
-  })
-);
-
-//Play/Pause button
-buttons.appendChild(
-  creationHelper("button", "", ">", "", function() {
-    if(audio.paused){
-      audio.play();
-    }else{
-      audio.pause();
-    }
-  })
-);
-
-//Next button
-buttons.appendChild(
-  creationHelper("button", "", ">|", "", function() {
-    currentSong++;
-    startSong();
-  })
-);
-
-//Random button
-buttons.appendChild(
-  creationHelper("button", "", "><", "", function() {
-    currentSong = Math.floor(Math.random() * songs.length);
-    startSong();
-  })
-);
-
-//Playlist button
-buttons.appendChild(
-  creationHelper("button", "", "V", "", function() {
-    player.classList.toggle("pl");
-  })
-);
-playing.appendChild(buttons);
-
-player.appendChild(playing);
-
-//Add playlist
-var playList = creationHelper("ul", "playlist", "", "", "");
-for (songIndex in songs) {
-  var url = decodeURIComponent(unescape(songs[songIndex].href));
-  playList.appendChild(
-    creationHelper("li", "", url.substring(url.lastIndexOf("/") + 1), songIndex, function() {
-      currentSong = parseInt(this.getAttribute("data"));
+  //Prev button
+  buttons.appendChild(
+    creationHelper("button", "", "|<", "", function() {
+      currentSong--;
       startSong();
     })
   );
-}
-player.appendChild(playList);
 
-var style = creationHelper("style", "", "", "", "");
-style.innerHTML=".player{position:absolute;top:0;bottom:0;left:0;right:0;background:#87ceeb;font-size:x-large}.playing,.playlist,.progressbar{position:relative}.playing{height:100%;width:100%}.pl .playing{height:20%}.playlist{height:0%;width:100%;box-sizing:border-box;max-width:800px;margin:auto;overflow:scroll}.pl .playlist{height:80%}.progressbar{height:100%;width:100%;text-align:center}.progress{height:100%;background:orange;text-align:center}.buttons,.songname{position:absolute;width:100%;text-align:center}.songname{top:33%}.buttons{top:66%}.player button{background:0 0;border:none;font-size:x-large}";
+  //Play/Pause button
+  buttons.appendChild(
+    creationHelper("button", "", ">", "", function() {
+      if(audio.paused){
+        audio.play();
+      }else{
+        audio.pause();
+      }
+    })
+  );
 
-player.appendChild(style);
+  //Next button
+  buttons.appendChild(
+    creationHelper("button", "", ">|", "", function() {
+      currentSong++;
+      startSong();
+    })
+  );
 
-var meta = document.createElement("meta");
-var o = document.createAttribute("name");
-o.value = "viewport";
-meta.setAttributeNode(o);
-o = document.createAttribute("content");
-o.value = "width=device-width, initial-scale=1";
-meta.setAttributeNode(o);
-document.head.appendChild(meta);
+  //Random button
+  buttons.appendChild(
+    creationHelper("button", "", "><", "", function() {
+      currentSong = Math.floor(Math.random() * songs.length);
+      startSong();
+    })
+  );
 
-document.body.innerHTML="";
-document.body.appendChild(player);
+  //Playlist button
+  buttons.appendChild(
+    creationHelper("button", "", "V", "", function() {
+      player.classList.toggle("pl");
+    })
+  );
+  playing.appendChild(buttons);
 
-//Create the HTML Audio instance
-audio = new Audio;
-audio.addEventListener(
-  "ended", function() {
+  player.appendChild(playing);
+
+  //Add playlist
+  var playList = creationHelper("ul", "playlist", "", "", "");
+  for (songIndex in songs) {
+    var url = decodeURIComponent(unescape(songs[songIndex].href));
+    playList.appendChild(
+      creationHelper("li", "", url.substring(url.lastIndexOf("/") + 1), songIndex, function() {
+        currentSong = parseInt(this.getAttribute("data"));
+        startSong();
+      })
+    );
+  }
+  player.appendChild(playList);
+
+  var style = creationHelper("style", "", "", "", "");
+  style.innerHTML=".player{position:absolute;top:0;bottom:0;left:0;right:0;background:#87ceeb;font-size:x-large}.playing,.playlist,.progressbar{position:relative}.playing{height:100%;width:100%}.pl .playing{height:20%}.playlist{height:0%;width:100%;box-sizing:border-box;max-width:800px;margin:auto;overflow:scroll}.pl .playlist{height:80%}.progressbar{height:100%;width:100%;text-align:center}.progress{height:100%;background:orange;text-align:center}.buttons,.songname{position:absolute;width:100%;text-align:center}.songname{top:33%}.buttons{top:66%}.player button{background:0 0;border:none;font-size:x-large}";
+
+  player.appendChild(style);
+
+  var meta = document.createElement("meta");
+  var o = document.createAttribute("name");
+  o.value = "viewport";
+  meta.setAttributeNode(o);
+  o = document.createAttribute("content");
+  o.value = "width=device-width, initial-scale=1";
+  meta.setAttributeNode(o);
+  document.head.appendChild(meta);
+
+  document.body.innerHTML="";
+  document.body.appendChild(player);
+
+  //Create the HTML Audio instance
+  audio = new Audio;
+  audio.addEventListener(
+    "ended", function() {
+      currentSong++;
+      startSong();
+    }, !1
+  );
+  //Start playing
+  updateProgressBar();
+  startSong();
+
+  navigator.mediaSession.setActionHandler("previoustrack", function() {
+    currentSong--;
+    startSong();
+  });
+
+  navigator.mediaSession.setActionHandler("nexttrack", function() {
     currentSong++;
     startSong();
-  }, !1
-);
-//Start playing
-startSong();
-requestAnimationFrame(updateProgressBar);
-
-
-
-navigator.mediaSession.setActionHandler("previoustrack", function() {
-  currentSong--;
-  startSong();
-});
-
-navigator.mediaSession.setActionHandler("nexttrack", function() {
-  currentSong++;
-  startSong();
-});
+  });
 
 }
 
@@ -157,8 +157,8 @@ function startSong() {
   var t = decodeURIComponent(songs[currentSong].href);
   songname.innerHTML = t.substring(t.lastIndexOf("/") + 1);
   navigator.mediaSession.metadata = new MediaMetadata({
-      title: songname.innerHTML
-    });
+    title: songname.innerHTML
+  });
 }
 
 /*
