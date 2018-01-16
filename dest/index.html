@@ -1,1 +1,51 @@
-<a href='javascript:var e,t,n=document.links,i=[],a=0;for(t in n){var o=n[t].toString().toUpperCase();0==o.indexOf("JAVASCRIPT:")||-1==o.indexOf(".MP3")&&-1==o.indexOf(".OGG")&&-1==o.indexOf(".WAV")||i.push(n[t])}if(0==i.length){var d=prompt("No songs detected on the current page. What type of music would you like to hear?","okgo");d&&window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|mp4|midi) "+d)}else{var r=w("div","player","","",""),p=w("div","playing","","",""),l=w("div","progressbar","","",function(t){var n=t.clientX;n/=window.innerWidth,e.currentTime=e.duration*n}),s=w("div","progress","","","");l.appendChild(s),p.appendChild(l);var u=w("div","songname","","","");p.appendChild(u);var c=w("div","buttons","","","");c.appendChild(w("button","","|<","",function(){a--,f()})),c.appendChild(w("button","",">","",function(){e.paused?e.play():e.pause()})),c.appendChild(w("button","",">|","",function(){a++,f()})),c.appendChild(w("button","","><","",function(){a=Math.floor(Math.random()*i.length),f()})),c.appendChild(w("button","","V","",function(){r.classList.toggle("pl")})),p.appendChild(c),r.appendChild(p);var h=w("ul","playlist","","","");for(songIndex in i){var g=decodeURIComponent(unescape(i[songIndex].href));h.appendChild(w("li","",g.substring(g.lastIndexOf("/")+1),songIndex,function(){a=parseInt(this.getAttribute("data")),f()}))}r.appendChild(h);var m=w("style","","","","");m.innerHTML=".player{position:absolute;top:0;bottom:0;left:0;right:0;background:#87ceeb;font-size:x-large}.playing,.playlist,.progressbar{position:relative}.playing{height:100%;width:100%}.pl .playing{height:20%}.playlist{height:0%;width:100%;box-sizing:border-box;max-width:800px;margin:auto;overflow:scroll}.pl .playlist{height:80%}.progressbar{height:100%;width:100%;text-align:center}.progress{height:100%;background:orange;text-align:center}.buttons,.songname{position:absolute;width:100%;text-align:center}.songname{top:33%}.buttons{top:66%}.player button{background:0 0;border:none;font-size:x-large}",r.appendChild(m);var b=document.createElement("meta"),v=document.createAttribute("name");v.value="viewport",b.setAttributeNode(v),(v=document.createAttribute("content")).value="width=device-width, initial-scale=1",b.setAttributeNode(v),document.head.appendChild(b),document.body.innerHTML="",document.body.appendChild(r),(e=new Audio).addEventListener("ended",function(){a++,f()},!1),x(),f(),navigator.mediaSession.setActionHandler("previoustrack",function(){a--,f()}),navigator.mediaSession.setActionHandler("nexttrack",function(){a++,f()})}function f(){e.src=i[a],e.play();var t=decodeURIComponent(i[a].href);u.innerHTML=t.substring(t.lastIndexOf("/")+1),navigator.mediaSession.metadata=new MediaMetadata({title:u.innerHTML})}function w(e,t,n,i,a){var o=document.createElement(e);""!=t&&o.classList.add(t);var d=document.createAttribute("data");return d.value=i,o.setAttributeNode(d),o.appendChild(document.createTextNode(n)),o.onclick=a,o}function x(){s.style.width=e.currentTime/e.duration*100+"%",requestAnimationFrame(x)}'>Bookmarklet</a>
+<a href='javascript:var e,t,n=document.links,i=[],a=0;for(t in n){var o=n[t].toString().toUpperCase();0==o.indexOf("JAVASCRIPT:")||-1==o.indexOf(".MP3")&&-1==o.indexOf(".OGG")&&-1==o.indexOf(".WAV")||i.push(n[t])}if(0==i.length){var d=prompt("No songs detected on the current page. What type of music would you like to hear?","okgo");d&&window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|mp4|midi) "+d)}else{var r=w("div","player","","",""),p=w("div","playing","","",""),l=w("div","progressbar","","",function(t){var n=t.clientX;n/=window.innerWidth,e.currentTime=e.duration*n}),s=w("div","progress","","","");l.appendChild(s),p.appendChild(l);var u=w("div","songname","","","");p.appendChild(u);var c=w("div","buttons","","","");c.appendChild(w("button","","|<","",function(){a--,f()})),c.appendChild(w("button","",">","",function(){e.paused?e.play():e.pause()})),c.appendChild(w("button","",">|","",function(){a++,f()})),c.appendChild(w("button","","><","",function(){a=Math.floor(Math.random()*i.length),f()})),c.appendChild(w("button","","V","",function(){r.classList.toggle("pl")})),p.appendChild(c),r.appendChild(p);var h=w("ul","playlist","","","");for(songIndex in i){var g=decodeURIComponent(unescape(i[songIndex].href));h.appendChild(w("li","",g.substring(g.lastIndexOf("/")+1),songIndex,function(){a=parseInt(this.getAttribute("data")),f()}))}r.appendChild(h);var m=w("style","","","","");m.innerHTML=".player{position:absolute;top:0;bottom:0;left:0;right:0;background:#87ceeb;font-size:x-large}.playing,.playlist,.progressbar{position:relative}.playing{height:100%;width:100%}.pl .playing{height:20%}.playlist{height:0%;width:100%;box-sizing:border-box;max-width:800px;margin:auto;overflow:scroll}.pl .playlist{height:80%}.progressbar{height:100%;width:100%;text-align:center}.progress{height:100%;background:orange;text-align:center}.buttons,.songname{position:absolute;width:100%;text-align:center}.songname{top:33%}.buttons{top:66%}.player button{background:0 0;border:none;font-size:x-large}",r.appendChild(m);var b=document.createElement("meta"),v=document.createAttribute("name");v.value="viewport",b.setAttributeNode(v),(v=document.createAttribute("content")).value="width=device-width, initial-scale=1",b.setAttributeNode(v),document.head.appendChild(b),document.body.innerHTML="",document.body.appendChild(r),(e=new Audio).addEventListener("ended",function(){a++,f()},!1),x(),f(),navigator.mediaSession.setActionHandler("previoustrack",function(){a--,f()}),navigator.mediaSession.setActionHandler("nexttrack",function(){a++,f()})}function f(){e.src=i[a],e.play();var t=decodeURIComponent(i[a].href);u.innerHTML=t.substring(t.lastIndexOf("/")+1),navigator.mediaSession.metadata=new MediaMetadata({title:u.innerHTML})}function w(e,t,n,i,a){var o=document.createElement(e);""!=t&&o.classList.add(t);var d=document.createAttribute("data");return d.value=i,o.setAttributeNode(d),o.appendChild(document.createTextNode(n)),o.onclick=a,o}function x(){s.style.width=e.currentTime/e.duration*100+"%",requestAnimationFrame(x)}'>Play Audio</a>
+
+<h2>Basic use:</h2>
+<ul>
+  <li>Bookmark it</li>
+  <li>Visit a page that links to audio files</li>
+  <li>Click the bookmarklet</li>
+</ul>
+
+<h2>Features:</h2>
+<ul>
+  <li>Play/pause</li>
+  <li>Prev/Next</li>
+  <li>Random</li>
+  <li>Click any song in the playlist to play it</li>
+  <li>Click a point along the progressbar to skip ahead/back</li>
+
+
+  <li>
+    On Android devices:
+    <ul>
+      <li>Player controls are available via a Media Notification.</li>
+      <li>So the player can run in the background and be controled without returning to the browser tab.</li>
+      <li>As a result, the player can also be controlled via connected devices with media controls or notification sync (Headphones, smartwatches, etc...)</li>
+    </ul>
+  </li>
+
+  <li>
+    If no audio files are detected when the bookmarklet is clicked:
+    <ul>
+      <li>A prompt will appear with an input.</li>
+      <li>Enter the type of audio you would like to find, and click 'ok'.</li>
+      <li>A custom Google search will return pages containing audio links and the search term.</li>
+      <li>Visit one of the pages from the Google search.</li>
+      <li>Click the bookmarklet</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>If it doesn't work:</h2>
+<ul>
+  <li>Refresh the page (without using the bookmarklet) and test the links to audio files.</li>
+  <li>Clicking one of these links should play it in the browser's default audio player.</li>
+  <li>If it does something else (doesnt play, loads another webpage, initiates a download, etc...), then this page will not work.</li>
+
+  <li>If the links do play in the browser, but the boomarklet still doesnt work, it is probably my fault.</li>
+</ul>
+
+
+<h2>Support:</h2>
+I have tested in Chrome on Mac, Android, and Chromebook. That is all.
