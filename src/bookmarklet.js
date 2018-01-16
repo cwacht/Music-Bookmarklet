@@ -10,7 +10,8 @@ var audio,
 //Create an array of all the links to playable audio.
 for (linkIndex in listOfLinks) {
   var h = listOfLinks[linkIndex].toString().toUpperCase();
-  if( h.indexOf(".MP3")!=-1 || h.indexOf(".OGG")!=-1 || h.indexOf(".WAV")!=-1 ){
+  if( h.indexOf("JAVASCRIPT:")!=0 && //filter out any bookmarklets
+    ( h.indexOf(".MP3")!=-1 || h.indexOf(".OGG")!=-1 || h.indexOf(".WAV")!=-1 ) ){
     songs.push(listOfLinks[linkIndex]);
   }
 }
