@@ -14,6 +14,12 @@ for (linkIndex in listOfLinks) {
     songs.push(listOfLinks[linkIndex]);
   }
 }
+if(songs.length == 0){
+  var search = prompt("No songs detected on the current page. What type of music would you like to hear?", "okgo");
+  if(search){
+    window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|mp4|midi) "+search);
+  }
+}else{
 
 //Create the player container
 var player = creationHelper("div", "player", "", "", "");
@@ -129,15 +135,17 @@ requestAnimationFrame(updateProgressBar);
 
 
 
-navigator.mediaSession.setActionHandler('previoustrack', function() {
+navigator.mediaSession.setActionHandler("previoustrack", function() {
   currentSong--;
   startSong();
 });
 
-navigator.mediaSession.setActionHandler('nexttrack', function() {
+navigator.mediaSession.setActionHandler("nexttrack", function() {
   currentSong++;
   startSong();
 });
+
+}
 
 /*
 startSong begins playing a new song

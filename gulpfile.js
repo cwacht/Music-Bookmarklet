@@ -28,7 +28,14 @@ gulp.task('compress', function () {
 	var uglify = require('gulp-uglify');
 	var rename = require('gulp-rename');
   return gulp.src('./src/bookmarklet.js')
-    .pipe(uglify({ mangle: { toplevel: true } }))
+    .pipe(uglify({
+			mangle: {
+				toplevel: true
+			},
+			output: {
+				quote_style: 3
+			}
+		}))
 		.pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dest'));
 });
