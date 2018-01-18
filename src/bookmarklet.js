@@ -48,29 +48,25 @@ if(songs.length == 0){
 
   //Prev button
   buttons.appendChild(
-    creationHelper("button", "", "|◀", "", function() {
-      currentSong--;
-      startSong();
-    })
+    creationHelper("button", "", "|◀", "", prev )
   );
 
   //Play/Pause button
   buttons.appendChild(
-    creationHelper("button", "", "▶", "", function() {
+    creationHelper("button", "", "||", "", function() {
       if(audio.paused){
         audio.play();
+        this.innerHTML="||";
       }else{
         audio.pause();
+        this.innerHTML="▶";
       }
     })
   );
 
   //Next button
   buttons.appendChild(
-    creationHelper("button", "", "▶|", "", function() {
-      currentSong++;
-      startSong();
-    })
+    creationHelper("button", "", "▶|", "", next )
   );
 
   //Random button
@@ -131,25 +127,15 @@ if(songs.length == 0){
 
   //Create the HTML Audio instance
   audio = new Audio;
-  audio.addEventListener(
-    "ended", function() {
-      currentSong++;
-      startSong();
-    }, !1
-  );
+  audio.addEventListener( "ended", next, !1 );
+  
   //Start playing
   updateProgressBar();
   startSong();
 
-  navigator.mediaSession.setActionHandler("previoustrack", function() {
-    currentSong--;
-    startSong();
-  });
-
-  navigator.mediaSession.setActionHandler("nexttrack", function() {
-    currentSong++;
-    startSong();
-  });
+  //provide next/prev controls within android notification
+  navigator.mediaSession.setActionHandler("previoustrack", prev);
+  navigator.mediaSession.setActionHandler("nexttrack", next);
 
 }
 
@@ -197,4 +183,21 @@ function search(search){
   if(search){
     window.open("https://www.google.com/search?q=intitle:\"index.of\" (wma|mp3|midi) "+search,"_self");
   }
+}
+
+function prev(){
+  if(currentSong>0){
+    currentSong--;
+  }else{
+    currentSong=songs.length-1
+  }
+  startSong();
+}
+function next(){
+  if(currentSong<songs.length-1){
+    currentSong++;
+  }else{
+    currentSong=0;
+  }
+  startSong();
 }

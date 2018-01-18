@@ -12,9 +12,10 @@ A standalone bookmarklet that plays audio from a page in a full page player.
 ## Features:
 * Play/pause
 * Prev/Next
-* Random
+* Random song
 * Click any song in the playlist to play it
 * Click a point along the progressbar to skip ahead/back
+* Search
 
 * On Android devices:
   * Player controls are available via a Media Notification.
@@ -30,12 +31,12 @@ A standalone bookmarklet that plays audio from a page in a full page player.
   * Click the bookmarklet
 
 
-## If it doesn't work:
+## If the bookmarklet doesn't work:
 * Refresh the page (without using the bookmarklet) and test the links to audio files.
 * Clicking one of these links should play it in the browser's default audio player.
 * If it does something else (doesnt play, loads another webpage, initiates a download, etc...), then that page will not work.
 
-* If the links do play in the browser, but the boomarklet still doesnt work, it is probably my fault.
+* If the links do play in the browser, but the bookmarklet still doesnt work, it is probably my fault.
 
 
 ## Support:
